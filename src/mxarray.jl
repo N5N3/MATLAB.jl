@@ -258,6 +258,8 @@ mxarray(x::T) where {T<:MxComplexNum} = mxarray([x])
 # Note: the conversion is deep-copy, as there is no way to let
 # mxArray use Julia array's memory
 
+mxarray(a::AbstractArray{T}) where T<:Union{MxRealNum,MxComplexNum} = mxarray(collect(a))
+
 function mxarray(a::Array{T}) where T<:MxRealNum
     mx = mxarray(T, size(a))
     ccall(:memcpy, Ptr{Cvoid}, (Ptr{Cvoid}, Ptr{Cvoid}, UInt), data_ptr(mx), a, length(a)*sizeof(T))
