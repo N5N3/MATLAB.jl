@@ -128,6 +128,9 @@ end
 #   communication with MATLAB session
 #
 ###########################################################
+using StringEncodings
+
+const ERR_ENCODE = Ref("GBK")
 
 function eval_string(session::MSession, stmt::String)
     # evaluate a MATLAB statement in a given MATLAB session
@@ -138,7 +141,7 @@ function eval_string(session::MSession, stmt::String)
     if bufptr != C_NULL
         bs = unsafe_string(bufptr)
         if ~isempty(bs)
-            print(bs)
+            print(decode(Vector{UInt8}(bs), ERR_ENCODE[]))
         end
     end
     return nothing

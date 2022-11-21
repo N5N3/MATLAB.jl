@@ -7,6 +7,7 @@ version = "0.8.4"
 [deps]
 Libdl = "8f399da3-3557-5675-b5ff-fb832c97cbdb"
 SparseArrays = "2f01184e-e22b-5df5-ae63-d93ebab69eaf"
+StringEncodings = "69024149-9ee7-55f6-a4c4-859efe599b68"
 
 [compat]
 julia = "1"
